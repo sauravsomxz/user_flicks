@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user_flicks/core/theme/app_theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'UserFlicks',
+      theme: AppTheme.lightTheme,
       home: Scaffold(),
     );
   }
