@@ -11,15 +11,10 @@ class ApiClient {
   final http.Client _client;
   final String baseUrl;
 
-  /// Creates an instance of [ApiClient] with optional custom [http.Client].
-  ApiClient({required this.baseUrl, http.Client? client})
-    : _client = client ?? http.Client();
+  /// Creates an instance of [ApiClient] with custom [baseUrl].
+  ApiClient({required this.baseUrl}) : _client = http.Client();
 
   /// Generic GET request.
-  ///
-  /// [endpoint]: API endpoint path.
-  /// [headers]: Optional request headers.
-  /// [parser]: Function to parse response body into desired model.
   Future<NetworkResponse<T>> get<T>(
     String endpoint, {
     Map<String, String>? headers,
@@ -38,11 +33,6 @@ class ApiClient {
   }
 
   /// Generic POST request.
-  ///
-  /// [endpoint]: API endpoint path.
-  /// [headers]: Optional request headers.
-  /// [body]: Request payload, automatically encoded to JSON.
-  /// [parser]: Function to parse response body into desired model.
   Future<NetworkResponse<T>> post<T>(
     String endpoint, {
     Map<String, String>? headers,
@@ -61,7 +51,7 @@ class ApiClient {
     }
   }
 
-  /// Handles HTTP response by checking status codes and parsing body if needed.
+  /// Handle the HTTP response.
   NetworkResponse<T> _handleResponse<T>(
     http.Response response,
     T Function(dynamic data)? parser,
