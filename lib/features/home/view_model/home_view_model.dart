@@ -84,18 +84,6 @@ class UsersViewModel extends ChangeNotifier {
     }
   }
 
-  /// Handles automatic pagination based on screen height.
-  /// If the screen height changes (for example, when a device's screen orientation changes),
-  /// this method checks if the list has fewer than 6 items and fetches the next page if necessary.
-  /// This ensures that when there's less data, the app automatically loads more users.
-  void updateScreenHeight(double height) {
-    screenHeight = height;
-    // Trigger fetching next page if the screen height is valid and the list is small
-    if (screenHeight > 0.0 && listOfUsers.length <= 6) {
-      fetchUsers(page: currentPage + 1); // Automatically fetch the next page
-    }
-  }
-
   /// Disposes of the scroll controller when it is no longer needed.
   /// This prevents memory leaks by removing the listener and disposing of the controller.
   @override
