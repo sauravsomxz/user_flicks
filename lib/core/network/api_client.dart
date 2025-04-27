@@ -42,7 +42,7 @@ class ApiClient {
     try {
       final uri = Uri.parse('$baseUrl$endpoint');
       final response = await _client
-          .post(uri, headers: headers, body: jsonEncode(body))
+          .post(uri, headers: headers, body: body)
           .timeout(_timeoutDuration);
 
       return _handleResponse<T>(response, parser);

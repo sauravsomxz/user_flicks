@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:user_flicks/core/app_routes.dart';
 import 'package:user_flicks/core/config/app_config.dart';
 import 'package:user_flicks/core/theme/app_theme.dart';
+import 'package:user_flicks/features/add_user/view_model/add_user_view_model.dart';
 import 'package:user_flicks/features/home/view_model/home_view_model.dart';
 
 class App extends StatelessWidget {
@@ -20,6 +21,9 @@ class App extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<UsersViewModel>(create: (_) => UsersViewModel()),
+        ChangeNotifierProvider<AddUserViewModel>(
+          create: (_) => AddUserViewModel(),
+        ),
       ],
       child: MaterialApp.router(
         title: 'UserFlix',
