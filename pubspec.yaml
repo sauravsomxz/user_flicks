@@ -34,6 +34,7 @@ dependencies:
   flutter_dotenv: ^5.2.1 # for handling multiple environments
   provider: ^6.1.4 # for state management
   cached_network_image: ^3.4.1 # for image caching
+  go_router: ^15.1.1 # for handling routing across the app
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

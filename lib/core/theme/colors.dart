@@ -24,4 +24,5 @@ class AppColors {
 
   // Others
   static const Color splash = Color(0xFF4F46E5); // Primary for splash effect
+  static const Color transparent = Colors.transparent;
 }

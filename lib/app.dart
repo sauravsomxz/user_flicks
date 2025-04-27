@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
+import 'package:user_flicks/core/app_routes.dart';
 import 'package:user_flicks/core/config/app_config.dart';
 import 'package:user_flicks/core/theme/app_theme.dart';
-import 'package:user_flicks/features/home/view/home_view.dart';
 import 'package:user_flicks/features/home/view_model/home_view_model.dart';
 
 class App extends StatelessWidget {
@@ -21,11 +21,11 @@ class App extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<UsersViewModel>(create: (_) => UsersViewModel()),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
         title: 'UserFlix',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
-        home: HomeView(),
+        routerConfig: AppRouter().router,
       ),
     );
   }
