@@ -15,20 +15,14 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
-    Provider.of<UsersViewModel>(context, listen: false).fetchUsers();
     super.initState();
+    Provider.of<UsersViewModel>(context, listen: false).fetchUsers();
   }
 
   @override
   Widget build(BuildContext context) {
     final UsersViewModel usersViewModel = Provider.of<UsersViewModel>(context);
-    // Get screen height for auto-pagination logic
-    if (MediaQuery.of(context).size.height > 0.0) {
-      // Update screen height only once
-      if (usersViewModel.screenHeight != MediaQuery.of(context).size.height) {
-        usersViewModel.updateScreenHeight(MediaQuery.of(context).size.height);
-      }
-    }
+
     return SafeArea(
       top: false,
       child: Scaffold(
