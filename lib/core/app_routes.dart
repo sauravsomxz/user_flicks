@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:user_flicks/features/add_user/view/add_user_view.dart';
 import 'package:user_flicks/features/home/view/home_view.dart';
 import 'package:user_flicks/features/movies/view/movie_screen.dart';
 
@@ -31,6 +32,12 @@ class AppRouter {
           return const MoviesView();
         },
       ),
+      GoRoute(
+        path: Routes.addUser,
+        builder: (context, state) {
+          return AddUserView();
+        },
+      ),
     ],
   );
 }
@@ -44,4 +51,7 @@ class Routes {
 
   /// The route path for the Movies screen.
   static const String movies = '/movies';
+
+  /// The route path for Add User screen.
+  static const String addUser = '/add-user';
 }
