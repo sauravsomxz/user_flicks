@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:user_flicks/core/config/app_config.dart';
 import 'package:user_flicks/core/theme/app_theme.dart';
 import 'package:user_flicks/features/home/view/home_view.dart';
-import 'package:user_flicks/features/home/view_model/user_view_model.dart';
+import 'package:user_flicks/features/home/view_model/home_view_model.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

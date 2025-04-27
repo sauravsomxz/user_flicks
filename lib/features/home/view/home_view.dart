@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:user_flicks/core/theme/colors.dart';
 import 'package:user_flicks/external/cached_image.dart';
-import 'package:user_flicks/features/home/view_model/user_view_model.dart';
+import 'package:user_flicks/features/home/view_model/home_view_model.dart';
 import 'package:user_flicks/widgets/edge_state.dart';
 
 class HomeView extends StatefulWidget {

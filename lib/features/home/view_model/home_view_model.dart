@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:user_flicks/core/network/network_response.dart';
 import 'package:user_flicks/features/home/model/user_data_model.dart';
 import 'package:user_flicks/features/home/model/user_response.dart';
-import 'package:user_flicks/features/home/repository/users_repository.dart';
+import 'package:user_flicks/features/home/repository/home_repository.dart';
 
 class UsersViewModel extends ChangeNotifier {
   final UsersRepository _usersRepository = UsersRepository();
