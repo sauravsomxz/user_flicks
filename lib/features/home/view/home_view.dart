@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:user_flicks/core/app_routes.dart';
 import 'package:user_flicks/core/theme/colors.dart';
 import 'package:user_flicks/external/cached_image.dart';
 import 'package:user_flicks/features/home/view_model/home_view_model.dart';
@@ -59,50 +61,55 @@ class _HomeViewState extends State<HomeView> {
                   ),
                   itemBuilder: (context, index) {
                     final user = usersViewModel.listOfUsers[index];
-                    return Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 12,
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppColors.cardBackground,
-                        borderRadius: BorderRadius.circular(12),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 4,
-                            offset: Offset(0, 2),
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              CachedImage(
-                                imageUrl: user.avatar,
-                                height: 50,
-                                width: 50,
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              SizedBox(width: 12),
-                              Text(
-                                "${user.firstName} ${user.lastName}",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColors.textPrimary,
+                    return InkWell(
+                      highlightColor: AppColors.transparent,
+                      splashFactory: NoSplash.splashFactory,
+                      onTap: () => context.go(Routes.movies),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 12,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColors.cardBackground,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 4,
+                              offset: Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                CachedImage(
+                                  imageUrl: user.avatar,
+                                  height: 50,
+                                  width: 50,
+                                  borderRadius: BorderRadius.circular(25),
                                 ),
-                              ),
-                            ],
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            size: 16,
-                            color: AppColors.textSecondary,
-                          ),
-                        ],
+                                SizedBox(width: 12),
+                                Text(
+                                  "${user.firstName} ${user.lastName}",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.textPrimary,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              size: 16,
+                              color: AppColors.textSecondary,
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   },
