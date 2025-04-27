@@ -64,7 +64,7 @@ class _HomeViewState extends State<HomeView> {
                     return InkWell(
                       highlightColor: AppColors.transparent,
                       splashFactory: NoSplash.splashFactory,
-                      onTap: () => context.go(Routes.movies),
+                      onTap: () => context.push(Routes.movies),
                       child: Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 12,
@@ -117,6 +117,11 @@ class _HomeViewState extends State<HomeView> {
                       (context, index) => const SizedBox(height: 12),
                   itemCount: usersViewModel.listOfUsers.length,
                 ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => context.push(Routes.addUser),
+          backgroundColor: AppColors.primaryDark,
+          child: Icon(Icons.add),
+        ),
       ),
     );
   }
