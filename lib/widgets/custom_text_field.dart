@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// A reusable, stylish TextField widget with enhanced UX/UI features.
 class CustomTextField extends StatelessWidget {
-  final String label;
+  final String hintText;
   final TextEditingController controller;
   final TextInputType keyboardType;
   final bool obscureText;
@@ -11,10 +11,11 @@ class CustomTextField extends StatelessWidget {
   final IconData? prefixIcon;
   final IconData? suffixIcon;
   final VoidCallback? onSuffixIconPressed;
+  final TextInputAction? textInputType;
 
   const CustomTextField({
     super.key,
-    required this.label,
+    required this.hintText,
     required this.controller,
     this.keyboardType = TextInputType.text,
     this.obscureText = false,
@@ -23,6 +24,7 @@ class CustomTextField extends StatelessWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.onSuffixIconPressed,
+    this.textInputType,
   });
 
   @override
@@ -31,13 +33,11 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       keyboardType: keyboardType,
       obscureText: obscureText,
+      textInputAction: textInputType,
+      onTapOutside:
+          (PointerDownEvent event) => FocusScope.of(context).unfocus(),
       decoration: InputDecoration(
-        labelText: label,
-        labelStyle: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-          color: Colors.grey[700],
-        ),
+        hintText: hintText,
         prefixIcon:
             prefixIcon != null
                 ? Icon(prefixIcon, color: Colors.grey[700])
