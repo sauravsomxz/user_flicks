@@ -31,6 +31,8 @@ class CachedImage extends StatelessWidget {
       fit: fit,
       width: width,
       height: height,
+      fadeInDuration: Duration.zero,
+      placeholderFadeInDuration: Duration.zero,
       placeholder:
           (_, __) =>
               placeholder ??
