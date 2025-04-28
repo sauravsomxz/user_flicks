@@ -15,46 +15,59 @@ class MoviesView extends StatefulWidget {
 class _MoviesViewState extends State<MoviesView> {
   @override
   void initState() {
-    Provider.of<ListOfMoviesVm>(context, listen: false).fetchListOfMovies();
     super.initState();
+    Provider.of<ListOfMoviesVm>(
+      context,
+      listen: false,
+    ).fetchListOfMovies(isInitialLoad: true);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Movies Listing Screen")),
+      appBar: AppBar(title: const Text("Movies Listing Screen")),
       body: Consumer<ListOfMoviesVm>(
-        builder: (BuildContext context, ListOfMoviesVm value, Widget? child) {
-          return value.getIfLoading
-              ? EdgeState(
-                message: "Hold tight, building your list of top picks! 🎬",
-                showLoader: true,
-              )
-              : value.hasError
-              ? EdgeState(
-                message:
-                    "Something went wrong... but don't worry, it's not you! 😔",
-                icon: Icons.error_outline,
-                iconColor: AppColors.error,
-              )
-              : value.listOfMovies.isEmpty
-              ? EdgeState(
-                message: "Your movies will show up soon. Stay tuned! 📻",
-                icon: Icons.hourglass_empty,
-                iconColor: AppColors.textSecondary,
-              )
-              : ListView.builder(
-                itemCount: value.listOfMovies.length,
-                itemBuilder: (context, index) {
-                  final movie = value.listOfMovies[index];
-                  return MovieCard(
-                    moviePosterImage: movie.posterPath ?? "",
-                    movieTitle: movie.title ?? "",
-                    releaseDate: movie.releaseDate ?? "",
-                  );
-                },
-              );
-        },
+        builder:
+            (context, vm, child) =>
+                vm.isInitialLoading
+                    ? const EdgeState(
+                      message:
+                          "Hold tight, building your list of top picks! 🎬",
+                      showLoader: true,
+                    )
+                    : vm.hasError && vm.listOfMovies.isEmpty
+                    ? const EdgeState(
+                      message:
+                          "Something went wrong... but don't worry, it's not you! 😔",
+                      icon: Icons.error_outline,
+                      iconColor: AppColors.error,
+                    )
+                    : vm.listOfMovies.isEmpty
+                    ? const EdgeState(
+                      message: "Your movies will show up soon. Stay tuned! 📻",
+                      icon: Icons.hourglass_empty,
+                      iconColor: AppColors.textSecondary,
+                    )
+                    : ListView.builder(
+                      controller: vm.scrollController,
+                      itemCount:
+                          vm.listOfMovies.length + (vm.isPaginating ? 1 : 0),
+                      itemBuilder: (context, index) {
+                        if (index < vm.listOfMovies.length) {
+                          final movie = vm.listOfMovies[index];
+                          return MovieCard(
+                            moviePosterImage: movie.posterPath ?? "",
+                            movieTitle: movie.title ?? "",
+                            releaseDate: movie.releaseDate ?? "",
+                          );
+                        } else {
+                          return const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 16),
+                            child: Center(child: CircularProgressIndicator()),
+                          );
+                        }
+                      },
+                    ),
       ),
     );
   }
