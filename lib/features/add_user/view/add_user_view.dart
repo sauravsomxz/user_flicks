@@ -39,9 +39,10 @@ class AddUserView extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 8.0,
+                    horizontal: 12.0,
                   ).copyWith(top: 12.0),
                   child: Column(
+                    spacing: 4,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
@@ -49,9 +50,10 @@ class AddUserView extends StatelessWidget {
                         style: TextStyle(color: AppColors.textPrimary),
                       ),
                       CustomTextField(
-                        label: 'Name',
+                        hintText: 'Name',
                         controller: addUserViewModel.nameController,
                         keyboardType: TextInputType.text,
+                        textInputType: TextInputAction.next,
                       ),
                       const SizedBox(height: 8),
                       const Text(
@@ -59,9 +61,30 @@ class AddUserView extends StatelessWidget {
                         style: TextStyle(color: AppColors.textPrimary),
                       ),
                       CustomTextField(
-                        label: 'Job',
+                        hintText: 'Job',
                         controller: addUserViewModel.jobController,
                         keyboardType: TextInputType.text,
+                        textInputType: TextInputAction.done,
+                      ),
+                      const SizedBox(height: 4),
+                      const Row(
+                        children: [
+                          Icon(
+                            Icons.info_outline,
+                            size: 16,
+                            color: AppColors.textSecondary,
+                          ),
+                          SizedBox(width: 4),
+                          Expanded(
+                            child: Text(
+                              "Both fields must be filled to enable Submit button.",
+                              style: TextStyle(
+                                color: AppColors.textSecondary,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       const Spacer(),
                       CustomButton(
