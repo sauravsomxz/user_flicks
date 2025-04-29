@@ -67,7 +67,6 @@ THE_MOVIES_DB_API_KEY=your_the_movies_db_api_key
 | ---------------- | ---------------------------------------------------------- |
 | `hive_generator` | Generates boilerplate code for Hive to save custom models  |
 | `build_runner`   | Runs the code generator like Hive or JSON model generators |
-| ---------------- | ---------------------------------------------------------- |
 
 ## 📚 What I Learned
 
@@ -103,6 +102,12 @@ THE_MOVIES_DB_API_KEY=<your_tmdb_api_key_here>
 
 ```http
 Content-Type: application/json
+```
+
+- For **POST requests to the Users API**, you must include the following header:
+
+```
+"Content-Type": "application/json",
 ```
 
 - Pagination is supported for both users and movies endpoints (default page is `1`).
