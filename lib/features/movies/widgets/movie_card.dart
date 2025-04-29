@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:user_flicks/core/config/app_config.dart';
-import 'package:user_flicks/core/helpers/date_time_helpers.dart';
+import 'package:user_flicks/core/helpers/app_helpers.dart';
 import 'package:user_flicks/core/theme/colors.dart';
 import 'package:user_flicks/external/cached_image.dart';
 
