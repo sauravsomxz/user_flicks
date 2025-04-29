@@ -36,6 +36,7 @@ dependencies:
   cached_network_image: ^3.4.1 # for image caching
   go_router: ^15.1.1 # for handling routing across the app
   intl: ^0.20.2 # for handling DateTime parsing
+  url_launcher: ^6.3.1 # for launching URLs in-app
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
