@@ -106,7 +106,7 @@ Content-Type: application/json
 
 - For **POST requests to the Users API**, you must include the following header:
 
-```
+```http
 Content-Type: application/json
 ```
 
