@@ -83,7 +83,9 @@ While building this project, I explored and implemented several best practices a
 - 💾 **Generic Local Storage with Hive**:  
   I created a reusable, generic class for handling local storage using Hive. This made saving and retrieving data much simpler and more consistent throughout the app. Understanding how Hive works under the hood, especially with adapters and type casting, was a valuable takeaway.
 
-These learnings have improved the way I think about state, background execution, and data persistence in mobile apps.## 🔌 APIs Used Across the App
+These learnings have improved the way I think about state, background execution, and data persistence in mobile apps.
+
+## 🔌 APIs Used Across the App
 
 ```env
 USERS_BASE_URL=https://reqres.in/api
