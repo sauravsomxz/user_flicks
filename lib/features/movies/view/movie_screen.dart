@@ -26,59 +26,62 @@ class _MoviesViewState extends State<MoviesView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Movies Listing Screen")),
-      body: Consumer<ListOfMoviesVm>(
-        builder:
-            (context, vm, child) =>
-                vm.isInitialLoading
-                    ? const EdgeState(
-                      message:
-                          "Hold tight, building your list of top picks! 🎬",
-                      showLoader: true,
-                    )
-                    : vm.hasError && vm.listOfMovies.isEmpty
-                    ? const EdgeState(
-                      message:
-                          "Something went wrong... but don't worry, it's not you! 😔",
-                      icon: Icons.error_outline,
-                      iconColor: AppColors.error,
-                    )
-                    : vm.listOfMovies.isEmpty
-                    ? const EdgeState(
-                      message: "Your movies will show up soon. Stay tuned! 📻",
-                      icon: Icons.hourglass_empty,
-                      iconColor: AppColors.textSecondary,
-                    )
-                    : ListView.builder(
-                      controller: vm.scrollController,
-                      itemCount:
-                          vm.listOfMovies.length + (vm.isPaginating ? 1 : 0),
-                      itemBuilder: (context, index) {
-                        if (index < vm.listOfMovies.length) {
-                          final movie = vm.listOfMovies[index];
-                          return InkWell(
-                            splashFactory: NoSplash.splashFactory,
-                            highlightColor: Colors.transparent,
-                            onTap:
-                                () => context.pushNamed(
-                                  Routes.movieDetailName,
-                                  pathParameters: {"id": movie.id.toString()},
-                                ),
-                            child: MovieCard(
-                              moviePosterImage: movie.posterPath ?? "",
-                              movieTitle: movie.title ?? "",
-                              releaseDate: movie.releaseDate ?? "",
-                            ),
-                          );
-                        } else {
-                          return const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 16),
-                            child: Center(child: CircularProgressIndicator()),
-                          );
-                        }
-                      },
-                    ),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(title: const Text("Movies Listing Screen")),
+        body: Consumer<ListOfMoviesVm>(
+          builder:
+              (context, vm, child) =>
+                  vm.isInitialLoading
+                      ? const EdgeState(
+                        message:
+                            "Hold tight, building your list of top picks! 🎬",
+                        showLoader: true,
+                      )
+                      : vm.hasError && vm.listOfMovies.isEmpty
+                      ? const EdgeState(
+                        message:
+                            "Something went wrong... but don't worry, it's not you! 😔",
+                        icon: Icons.error_outline,
+                        iconColor: AppColors.error,
+                      )
+                      : vm.listOfMovies.isEmpty
+                      ? const EdgeState(
+                        message:
+                            "Your movies will show up soon. Stay tuned! 📻",
+                        icon: Icons.hourglass_empty,
+                        iconColor: AppColors.textSecondary,
+                      )
+                      : ListView.builder(
+                        controller: vm.scrollController,
+                        itemCount:
+                            vm.listOfMovies.length + (vm.isPaginating ? 1 : 0),
+                        itemBuilder: (context, index) {
+                          if (index < vm.listOfMovies.length) {
+                            final movie = vm.listOfMovies[index];
+                            return InkWell(
+                              splashFactory: NoSplash.splashFactory,
+                              highlightColor: Colors.transparent,
+                              onTap:
+                                  () => context.pushNamed(
+                                    Routes.movieDetailName,
+                                    pathParameters: {"id": movie.id.toString()},
+                                  ),
+                              child: MovieCard(
+                                moviePosterImage: movie.posterPath ?? "",
+                                movieTitle: movie.title ?? "",
+                                releaseDate: movie.releaseDate ?? "",
+                              ),
+                            );
+                          } else {
+                            return const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 16),
+                              child: Center(child: CircularProgressIndicator()),
+                            );
+                          }
+                        },
+                      ),
+        ),
       ),
     );
   }
