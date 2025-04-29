@@ -39,18 +39,20 @@ class _MoviesViewState extends State<MoviesView> {
                         showLoader: true,
                       )
                       : vm.hasError && vm.listOfMovies.isEmpty
-                      ? const EdgeState(
+                      ? EdgeState(
                         message:
                             "Something went wrong... but don't worry, it's not you! 😔",
                         icon: Icons.error_outline,
                         iconColor: AppColors.error,
+                        onPressed: () => vm.fetchListOfMovies(),
                       )
                       : vm.listOfMovies.isEmpty
-                      ? const EdgeState(
+                      ? EdgeState(
                         message:
                             "Your movies will show up soon. Stay tuned! 📻",
                         icon: Icons.hourglass_empty,
                         iconColor: AppColors.textSecondary,
+                        onPressed: () => vm.fetchListOfMovies(),
                       )
                       : ListView.builder(
                         controller: vm.scrollController,

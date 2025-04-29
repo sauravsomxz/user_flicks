@@ -46,12 +46,14 @@ class _HomeViewState extends State<HomeView> {
                             "Something went wrong... but don't worry, it's not you! 😔",
                         icon: Icons.error_outline,
                         iconColor: AppColors.error,
+                        onPressed: () => usersViewModel.fetchUsers(),
                       )
                       : usersViewModel.listOfUsers.isEmpty
                       ? EdgeState(
                         message: "Your users will show up soon. Stay tuned! 📻",
                         icon: Icons.people_outline,
                         iconColor: AppColors.textSecondary,
+                        onPressed: () => usersViewModel.fetchUsers(),
                       )
                       : ListView.separated(
                         controller: usersViewModel.scrollController,

@@ -6,6 +6,7 @@ class EdgeState extends StatelessWidget {
   final Color? iconColor;
   final String message;
   final bool showLoader;
+  final Function()? onPressed;
 
   const EdgeState({
     super.key,
@@ -14,6 +15,7 @@ class EdgeState extends StatelessWidget {
     this.iconColor,
     required this.message,
     this.showLoader = false,
+    this.onPressed,
   });
 
   @override
@@ -32,6 +34,24 @@ class EdgeState extends StatelessWidget {
             style: const TextStyle(fontSize: 16),
             textAlign: TextAlign.center,
           ),
+          if (onPressed != null) ...[
+            const SizedBox(height: 20),
+            ElevatedButton.icon(
+              onPressed: onPressed,
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 12,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                elevation: 4,
+              ),
+              icon: const Icon(Icons.refresh),
+              label: const Text("Try Again", style: TextStyle(fontSize: 16)),
+            ),
+          ],
         ],
       ),
     );

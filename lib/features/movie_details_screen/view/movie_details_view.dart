@@ -47,12 +47,16 @@ class _MovieDetailsViewState extends State<MovieDetailsView> {
                           "Something went wrong... but don't worry, it's not you! 😔",
                       icon: Icons.error_outline,
                       iconColor: AppColors.error,
+                      onPressed:
+                          () => value.getMovieDetails(movieId: widget.movieId),
                     )
                     : value.movieDetailsDataModel == null
                     ? EdgeState(
                       message: "Your details will show up soon. Stay tuned! 📻",
                       icon: Icons.people_outline,
                       iconColor: AppColors.textSecondary,
+                      onPressed:
+                          () => value.getMovieDetails(movieId: widget.movieId),
                     )
                     : SingleChildScrollView(
                       child: Column(
