@@ -6,6 +6,7 @@ import 'package:user_flicks/core/config/app_config.dart';
 import 'package:user_flicks/core/theme/app_theme.dart';
 import 'package:user_flicks/features/add_user/view_model/add_user_view_model.dart';
 import 'package:user_flicks/features/home/view_model/home_view_model.dart';
+import 'package:user_flicks/features/movies/view_model/list_of_movies_vm.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -24,6 +25,7 @@ class App extends StatelessWidget {
         ChangeNotifierProvider<AddUserViewModel>(
           create: (_) => AddUserViewModel(),
         ),
+        ChangeNotifierProvider<ListOfMoviesVm>(create: (_) => ListOfMoviesVm()),
       ],
       child: MaterialApp.router(
         title: 'UserFlix',
