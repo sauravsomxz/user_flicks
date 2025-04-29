@@ -119,6 +119,86 @@ GET /users?page=1
 GET /trending/movie/day?language=en-US&page=1
 ```
 
+## Directory Structure
+
+```
+├── lib
+│   ├── app.dart
+│   ├── core
+│   │   ├── app_enums.dart
+│   │   ├── app_routes.dart
+│   │   ├── config
+│   │   │   └── app_config.dart
+│   │   ├── helpers
+│   │   │   └── app_helpers.dart
+│   │   ├── network
+│   │   │   ├── api_client.dart
+│   │   │   ├── network_exceptions.dart
+│   │   │   └── network_response.dart
+│   │   └── theme
+│   │       ├── app_theme.dart
+│   │       └── colors.dart
+│   ├── external
+│   │   ├── cached_image.dart
+│   │   ├── connectivity_service.dart
+│   │   ├── local_user_storage_service.dart
+│   │   └── url_launcher.dart
+│   ├── features
+│   │   ├── add_user
+│   │   │   ├── model
+│   │   │   │   ├── add_user_data_hive_data_model.dart
+│   │   │   │   ├── add_user_data_hive_data_model.g.dart
+│   │   │   │   ├── add_user_request_data_model.dart
+│   │   │   │   └── add_user_response.dart
+│   │   │   ├── repository
+│   │   │   │   └── add_user_repository.dart
+│   │   │   ├── view
+│   │   │   │   └── add_user_view.dart
+│   │   │   └── view_model
+│   │   │       └── add_user_view_model.dart
+│   │   ├── home
+│   │   │   ├── model
+│   │   │   │   ├── user_data_model.dart
+│   │   │   │   └── user_response.dart
+│   │   │   ├── repository
+│   │   │   │   └── home_repository.dart
+│   │   │   ├── view
+│   │   │   │   └── home_view.dart
+│   │   │   └── view_model
+│   │   │       └── home_view_model.dart
+│   │   ├── movie_details_screen
+│   │   │   ├── model
+│   │   │   │   └── movie_details_data_model.dart
+│   │   │   ├── repository
+│   │   │   │   └── movie_details_repository.dart
+│   │   │   ├── view
+│   │   │   │   └── movie_details_view.dart
+│   │   │   ├── view_model
+│   │   │   │   └── movie_details_vm.dart
+│   │   │   └── widgets
+│   │   │       ├── details_row.dart
+│   │   │       ├── movie_detail_header.dart
+│   │   │       ├── movie_detail_info_row.dart
+│   │   │       └── section_title.dart
+│   │   └── movies
+│   │       ├── model
+│   │       │   └── list_of_movies_data_model.dart
+│   │       ├── repository
+│   │       │   └── list_of_movies_repository.dart
+│   │       ├── view
+│   │       │   └── movie_screen.dart
+│   │       ├── view_model
+│   │       │   └── list_of_movies_vm.dart
+│   │       └── widgets
+│   │           └── movie_card.dart
+│   ├── main.dart
+│   └── widgets
+│       ├── custom_bottomsheet.dart
+│       ├── custom_button.dart
+│       ├── custom_text_field.dart
+│       └── edge_state.dart
+```
+
 ## Authors
 
 - [@Sourav Maharana - LinkedIn](http://linkedin.com/in/sourav-ranjan-maharana/)
