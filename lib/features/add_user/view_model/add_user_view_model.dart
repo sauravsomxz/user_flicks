@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:user_flicks/core/app_enums.dart';
 import 'package:user_flicks/core/network/network_response.dart';
+import 'package:user_flicks/external/background_sync_manager.dart';
 import 'package:user_flicks/external/connectivity_service.dart';
 import 'package:user_flicks/external/local_user_storage_service.dart';
 import 'package:user_flicks/features/add_user/model/add_user_data_hive_data_model.dart';
@@ -42,11 +43,12 @@ class AddUserViewModel extends ChangeNotifier {
       }
     });
 
-    // Trigger initial sync once connectivity is confirmed
     final isConnected = await _connectivityService.isConnected;
     if (isConnected) {
       await syncUnsyncedUsers();
     }
+
+    BackgroundSyncManager.registerUserSyncTask();
   }
 
   void _onTextChanged() {
