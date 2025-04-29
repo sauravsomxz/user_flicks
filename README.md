@@ -98,10 +98,10 @@ THE_MOVIES_DB_API_KEY=<your_tmdb_api_key_here>
 
 - All API keys are passed through request headers for added security and cleaner code.
 - The MoviesDB API doesn't work on JIO Fibre or JIO Mobile Data Network, it works perfect on Airtel Fibre or Airtel Hotspot & sometimes on BSNL networks as well.
-- For **The Movie DB** APIs and **POST requests to the Users API**, you must include the following header:
+- For **The Movie DB** APIs, you must include the following header:
 
 ```http
-Content-Type: application/json
+"accept": "application/json",
 ```
 
 - For **POST requests to the Users API**, you must include the following header:
