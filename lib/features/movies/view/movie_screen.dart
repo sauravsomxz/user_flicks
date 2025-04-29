@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:user_flicks/core/app_routes.dart';
 import 'package:user_flicks/core/theme/colors.dart';
 import 'package:user_flicks/features/movies/view_model/list_of_movies_vm.dart';
 import 'package:user_flicks/features/movies/widgets/movie_card.dart';
@@ -55,10 +57,19 @@ class _MoviesViewState extends State<MoviesView> {
                       itemBuilder: (context, index) {
                         if (index < vm.listOfMovies.length) {
                           final movie = vm.listOfMovies[index];
-                          return MovieCard(
-                            moviePosterImage: movie.posterPath ?? "",
-                            movieTitle: movie.title ?? "",
-                            releaseDate: movie.releaseDate ?? "",
+                          return InkWell(
+                            splashFactory: NoSplash.splashFactory,
+                            highlightColor: Colors.transparent,
+                            onTap:
+                                () => context.pushNamed(
+                                  Routes.movieDetailName,
+                                  pathParameters: {"id": movie.id.toString()},
+                                ),
+                            child: MovieCard(
+                              moviePosterImage: movie.posterPath ?? "",
+                              movieTitle: movie.title ?? "",
+                              releaseDate: movie.releaseDate ?? "",
+                            ),
                           );
                         } else {
                           return const Padding(
