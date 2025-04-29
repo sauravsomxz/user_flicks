@@ -107,7 +107,7 @@ Content-Type: application/json
 - For **POST requests to the Users API**, you must include the following header:
 
 ```
-"Content-Type": "application/json",
+Content-Type: application/json
 ```
 
 - Pagination is supported for both users and movies endpoints (default page is `1`).
