@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:user_flicks/core/app_routes.dart';
 import 'package:user_flicks/core/theme/colors.dart';
 import 'package:user_flicks/external/cached_image.dart';
+import 'package:user_flicks/features/add_user/view_model/add_user_view_model.dart';
 import 'package:user_flicks/features/home/view_model/home_view_model.dart';
 import 'package:user_flicks/widgets/edge_state.dart';
 
@@ -19,6 +20,7 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     super.initState();
     Provider.of<UsersViewModel>(context, listen: false).fetchUsers();
+    Provider.of<AddUserViewModel>(context, listen: false).syncUnsyncedUsers();
   }
 
   @override
