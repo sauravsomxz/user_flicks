@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:user_flicks/features/add_user/view/add_user_view.dart';
 import 'package:user_flicks/features/home/view/home_view.dart';
+import 'package:user_flicks/features/movie_details_screen/view/movie_details_view.dart';
 import 'package:user_flicks/features/movies/view/movie_screen.dart';
 
 /// The `AppRouter` class is responsible for setting up and managing
@@ -38,6 +39,14 @@ class AppRouter {
           return AddUserView();
         },
       ),
+      GoRoute(
+        name: Routes.movieDetailName,
+        path: Routes.movieDetail,
+        builder: (context, state) {
+          final movieId = state.pathParameters['id'];
+          return MovieDetailsView(movieId: movieId!);
+        },
+      ),
     ],
   );
 }
@@ -54,4 +63,8 @@ class Routes {
 
   /// The route path for Add User screen.
   static const String addUser = '/add-user';
+
+  /// The route path for Movie Detail screen.
+  static const String movieDetailName = 'movie-detail';
+  static const String movieDetail = '/movie-detail/:id';
 }
