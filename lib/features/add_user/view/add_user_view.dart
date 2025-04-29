@@ -29,90 +29,125 @@ class AddUserView extends StatelessWidget {
               if (addUserViewModel.status != null &&
                   !addUserViewModel.isLoading) {
                 _showResultBottomSheet(context, addUserViewModel.status!);
-                if (addUserViewModel.status! == UserAddStatus.success) {
-                  addUserViewModel.resetStatus();
-                }
+                addUserViewModel.resetStatus();
               }
             });
 
-            return Stack(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12.0,
-                  ).copyWith(top: 12.0),
-                  child: Column(
-                    spacing: 4,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "Name",
-                        style: TextStyle(color: AppColors.textPrimary),
-                      ),
-                      CustomTextField(
-                        hintText: 'Name',
-                        controller: addUserViewModel.nameController,
-                        keyboardType: TextInputType.text,
-                        textInputType: TextInputAction.next,
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        "Job",
-                        style: TextStyle(color: AppColors.textPrimary),
-                      ),
-                      CustomTextField(
-                        hintText: 'Job',
-                        controller: addUserViewModel.jobController,
-                        keyboardType: TextInputType.text,
-                        textInputType: TextInputAction.done,
-                      ),
-                      const SizedBox(height: 4),
-                      const Row(
-                        children: [
-                          Icon(
-                            Icons.info_outline,
-                            size: 16,
-                            color: AppColors.textSecondary,
-                          ),
-                          SizedBox(width: 4),
-                          Expanded(
-                            child: Text(
-                              "Both fields must be filled to enable Submit button.",
-                              style: TextStyle(
-                                color: AppColors.textSecondary,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const Spacer(),
-                      CustomButton(
-                        title: 'Submit',
-                        isActive:
-                            addUserViewModel.isFormValid &&
-                            !addUserViewModel.isLoading,
-                        onTap: () {
-                          if (addUserViewModel.isFormValid) {
-                            addUserViewModel.addUser();
-                          }
-                        },
-                      ),
-                      const SizedBox(height: 12),
-                    ],
+            return addUserViewModel.isLoading
+                ? Container(
+                  color: AppColors.textPrimary.withValues(alpha: 0.4),
+                  child: const Center(
+                    child: CircularProgressIndicator(color: AppColors.primary),
                   ),
-                ),
-                if (addUserViewModel.isLoading)
-                  Container(
-                    color: AppColors.textPrimary.withValues(alpha: 0.4),
-                    child: const Center(
-                      child: CircularProgressIndicator(
-                        color: AppColors.primary,
+                )
+                : SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: 12,
+                      right: 12,
+                      top: 12,
+                      bottom: MediaQuery.of(context).viewInsets.bottom,
+                    ).copyWith(top: 12.0),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        minHeight:
+                            MediaQuery.of(context).size.height -
+                            kToolbarHeight -
+                            MediaQuery.of(context).padding.top,
+                      ),
+                      child: IntrinsicHeight(
+                        child: Column(
+                          spacing: 4,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  addUserViewModel.unsyncedUsers.isEmpty
+                                      ? "All Users Synced"
+                                      : "Unsynced Users",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.secondary,
+                                  ),
+                                ),
+                                if (addUserViewModel.unsyncedUsers.isNotEmpty)
+                                  ...addUserViewModel.unsyncedUsers.map(
+                                    (e) => Column(
+                                      children: [
+                                        Text(
+                                          "Name: ${e.name} Job: ${e.job}",
+                                          style: TextStyle(
+                                            color: AppColors.textPrimary,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                              ],
+                            ),
+                            const Text(
+                              "Name",
+                              style: TextStyle(color: AppColors.textPrimary),
+                            ),
+                            CustomTextField(
+                              hintText: 'Name',
+                              controller: addUserViewModel.nameController,
+                              keyboardType: TextInputType.text,
+                              textInputType: TextInputAction.next,
+                            ),
+                            const SizedBox(height: 8),
+                            const Text(
+                              "Job",
+                              style: TextStyle(color: AppColors.textPrimary),
+                            ),
+                            CustomTextField(
+                              hintText: 'Job',
+                              controller: addUserViewModel.jobController,
+                              keyboardType: TextInputType.text,
+                              textInputType: TextInputAction.done,
+                            ),
+                            const SizedBox(height: 4),
+                            const Row(
+                              children: [
+                                Icon(
+                                  Icons.info_outline,
+                                  size: 16,
+                                  color: AppColors.textSecondary,
+                                ),
+                                SizedBox(width: 4),
+                                Expanded(
+                                  child: Text(
+                                    "Both fields must be filled to enable Submit button.",
+                                    style: TextStyle(
+                                      color: AppColors.textSecondary,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Spacer(),
+                            CustomButton(
+                              title: 'Submit',
+                              isActive:
+                                  addUserViewModel.isFormValid &&
+                                  !addUserViewModel.isLoading,
+                              onTap: () {
+                                if (addUserViewModel.isFormValid) {
+                                  addUserViewModel.addUser();
+                                }
+                              },
+                            ),
+                            const SizedBox(height: 12),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-              ],
-            );
+                );
           },
         ),
       ),
