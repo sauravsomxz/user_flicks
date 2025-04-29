@@ -24,7 +24,6 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      top: false,
       child: Scaffold(
         appBar: AppBar(
           title: Text("Users"),
